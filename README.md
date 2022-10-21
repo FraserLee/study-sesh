@@ -9,9 +9,9 @@ git clone https://github.com/FraserLee/study-sesh/
 
 cd study-sesh
 
-npm install
-
 mv .env-example .env
+
+npm install
 
 npx prisma db push
 
