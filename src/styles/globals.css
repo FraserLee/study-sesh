@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poiret+One&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  font-family: 'Poiret One', system-ui, sans-serif;
+  font-weight: 300;
+}
+h1 {
+  font-family: 'Playfair Display', serif, system-ui;
+  font-weight: 100;
+}
+body {
+  background: rgb(19 0 19);
+  background: linear-gradient(200deg, rgb(19 0 19) 26%, rgb(61 2 23) 100%);
+}
+
