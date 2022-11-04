@@ -1,6 +1,4 @@
-import { type NextPage } from "next";
-import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
 import Button from "./button";
@@ -14,7 +12,7 @@ const PostMessageBox = () => {
     return (<>
       <p className="text-white px-2 py-1 text-right text-sm opacity-50">
         howdy, stranger<br/>
-        you've gotta sign in to post round these parts<br/>
+        you&#39;ve gotta sign in to post round these parts<br/>
         -🤠
       </p>
       <Button onClick={() => signIn()}>sign in</Button>
@@ -36,7 +34,7 @@ const PostMessageBox = () => {
       <input
         className="px-2 py-1 text-white bg-[#6636305e] text-sm outline-none w-96"
         value={message}
-        placeholder="what's up?"
+        placeholder="what&#39;s up?"
         minLength={1}
         maxLength={100}
         onChange={(e) => setMessage(e.target.value)}

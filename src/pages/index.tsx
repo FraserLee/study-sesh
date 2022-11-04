@@ -52,7 +52,7 @@ const Home: NextPage = () => {
             Study together in person with other McGill students.
           </p>
           <p>
-            We haven't built it yet, so for the time being have fun with this
+            We haven&#39;t built it yet, so for the time being have fun with this
             textbox.
           </p>
         </div>
