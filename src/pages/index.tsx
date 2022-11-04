@@ -1,6 +1,5 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
@@ -19,15 +18,15 @@ const Home: NextPage = () => {
         <AuthShowcase />
       </div>
 
-      <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-        <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">
-          study-sesh.app
-        </h1>
-        <p className="text-2xl font-extrabold leading-normal text-gray-700 md:text-[2rem]">
-          Study together in person with other McGill students.
-        </p>
-        <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-          {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
+      <main className="container mx-auto min-h-screen flex flex-col justify-center items-center p-4 gap-2">
+          <h1 className="text-8xl text-white bg-[#6636305e] px-5 w-full">
+            study-sesh.app
+          </h1>
+        <div className="flex flex-col gap-2 items-start w-full px-5">
+          <p className="text-lg text-white">
+            Study together in person with other McGill students.<br/>
+            Trpc test: {hello.data ? hello.data.greeting : "Loading..."}
+          </p>
         </div>
       </main>
     </>
@@ -45,20 +44,20 @@ const AuthShowcase: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
+    <div className="flex flex-col items-start gap-2">
       {sessionData && (
-        <p className="text-2xl text-blue-500">
-          Logged in as {sessionData?.user?.name}
+        <p className="text-black font-mono text-xs bg-white px-2 py-1">
+          logged in as {sessionData?.user?.name}
         </p>
       )}
       {secretMessage && (
-        <p className="text-2xl text-blue-500">{secretMessage}</p>
+        <p className="text-black font-mono text-xs bg-white px-2 py-1">{secretMessage}</p>
       )}
       <button
-        className="rounded-md border border-black bg-violet-50 px-4 py-2 text-xl shadow-lg hover:bg-violet-100"
+        className="text-black font-mono text-xs bg-white px-2 py-1 hover:bg-black hover:text-white"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
-        {sessionData ? "Sign out" : "Sign in"}
+        {sessionData ? "sign out" : "sign in"}
       </button>
     </div>
   );
