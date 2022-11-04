@@ -6,13 +6,13 @@
 html {
   font-family: 'Poiret One', system-ui, sans-serif;
   font-weight: 300;
+  background: rgb(19 0 19);
 }
 h1 {
   font-family: 'Playfair Display', serif, system-ui;
   font-weight: 100;
 }
 body {
-  background: rgb(19 0 19);
   background: linear-gradient(200deg, rgb(19 0 19) 26%, rgb(61 2 23) 100%);
 }
 
