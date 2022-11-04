@@ -18,10 +18,10 @@ const Home: NextPage = () => {
         <AuthShowcase />
       </div>
 
-      <main className="container mx-auto min-h-screen flex flex-col justify-center items-center p-4 gap-2">
-          <h1 className="text-8xl text-white bg-[#6636305e] px-5 w-full">
-            study-sesh.app
-          </h1>
+      <main className="mx-auto min-h-screen flex flex-col justify-center items-center p-4 gap-2 w-fit">
+        <h1 className="text-8xl text-white bg-[#6636305e] px-5 text-center">
+          study-sesh.app
+        </h1>
         <div className="flex flex-col gap-2 items-start w-full px-5">
           <p className="text-lg text-white">
             Study together in person with other McGill students.<br/>
@@ -46,15 +46,15 @@ const AuthShowcase: React.FC = () => {
   return (
     <div className="flex flex-col items-start gap-2">
       {sessionData && (
-        <p className="text-black font-mono text-xs bg-white px-2 py-1">
+        <p className="text-white font-mono text-xs bg-[#6636305e] px-2 py-1">
           logged in as {sessionData?.user?.name}
         </p>
       )}
       {secretMessage && (
-        <p className="text-black font-mono text-xs bg-white px-2 py-1">{secretMessage}</p>
+        <p className="text-white font-mono text-xs bg-[#6636305e] px-2 py-1">{secretMessage}</p>
       )}
       <button
-        className="text-black font-mono text-xs bg-white px-2 py-1 hover:bg-black hover:text-white"
+        className="text-white font-mono text-xs bg-[#6636305e] px-2 py-1 hover:bg-black hover:text-white"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "sign out" : "sign in"}
