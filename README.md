@@ -37,3 +37,11 @@ Also checkout these tutorials on the stack to get a bit more familliar:
 - [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
 - [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
 
+
+
+
+---
+
+```bash
+npx prisma studio # to manually mess with the database
+```
