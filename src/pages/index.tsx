@@ -14,11 +14,14 @@ const Auth: React.FC = () => {
   return (
     <div className="flex flex-col items-start gap-2">
       {sessionData && (
-        <p className="text-white font-mono text-xs bg-[#6636305e] px-2 py-1">
+        <p className=" font-mono text-xs bg-[#6636305e] px-2 py-1">
           logged in as {sessionData?.user?.name}
         </p>
       )}
-      <Button onClick={sessionData ? () => signOut() : () => signIn()}>
+      <Button onClick={sessionData ? () => signOut() : () => signIn(
+        undefined,
+        { callbackUrl: window.location.origin + "/profile" }
+      )}>
         {sessionData ? "sign out" : "sign in"}
       </Button>
     </div>
@@ -43,8 +46,8 @@ const Home: NextPage = () => {
         <Auth />
       </div>
 
-      <main className="mx-auto min-h-screen flex flex-col items-center p-4 gap-2 w-fit text-white">
-        <h1 className="text-8xl text-white bg-[#6636305e] px-5 text-center mt-[calc(50vh-7.5rem)]">
+      <main className="mx-auto min-h-screen flex flex-col items-center p-4 gap-2 w-fit ">
+        <h1 className="text-8xl  bg-[#6636305e] px-5 text-center mt-[calc(50vh-7.5rem)]">
           study-sesh.app
         </h1>
         <div className="flex flex-col gap-2 items-start w-full px-5 text-lg">
