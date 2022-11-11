@@ -7,6 +7,7 @@ html {
   font-family: 'Poiret One', system-ui, sans-serif;
   font-weight: 300;
   background: rgb(19 0 19);
+  color: rgb(255 255 255);
 }
 h1 {
   font-family: 'Playfair Display', serif, system-ui;
@@ -14,5 +15,8 @@ h1 {
 }
 body {
   background: linear-gradient(200deg, rgb(19 0 19) 26%, rgb(61 2 23) 100%);
+}
+a {
+  text-decoration: underline;
 }
 
