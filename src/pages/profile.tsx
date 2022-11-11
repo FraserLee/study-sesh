@@ -1,6 +1,7 @@
 import { type NextPage } from 'next';
 import Head from 'next/head';
-import { signIn, signOut, useSession } from 'next-auth/client';
+import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const CreateAccount: NextPage = () => {
   return (
@@ -14,7 +15,7 @@ const CreateAccount: NextPage = () => {
         </h1>
         <div className="flex flex-col gap-2 items-start w-full px-5 text-lg">
           <p>
-            Click <a href="/">here</a> to go back to the home page.
+            Click <Link href="/">here</Link> to sign in.
           </p>
         </div>
       </main>
