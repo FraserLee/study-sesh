@@ -42,6 +42,7 @@ model User {
 
   name          String?
   email         String?   @unique
+  image         String?
   bio           String?   @default("") @db.VarChar(256)
 
 

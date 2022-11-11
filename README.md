@@ -42,6 +42,13 @@ Also checkout these tutorials on the stack to get a bit more familliar:
 
 ---
 
+If you're working on the file-system, don't worry. If you've got the actual DB
+keys in your `.env` file, watch out with these two.
+
+We'll set up some proper online test db branches once we have real users and
+real data. For now, it doesn't matter that much. Just try to message the group
+chat if you're changing something major.
 ```bash
 npx prisma studio # to manually mess with the database
+npx prisma db push # to push schema changes to the database
 ```
