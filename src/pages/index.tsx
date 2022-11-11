@@ -1,38 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
-
 import { Posts, PostMessageBox } from "../components/posts";
-import Button from "../components/button";
-
-
-
-
-const Auth: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  return (
-    <div className="flex flex-col items-start gap-2">
-      {sessionData && (
-        <p className=" font-mono text-xs bg-[#6636305e] px-2 py-1">
-          logged in as {sessionData?.user?.name}
-        </p>
-      )}
-      <Button onClick={sessionData ? () => signOut() : () => signIn(
-        undefined,
-        { callbackUrl: window.location.origin + "/profile" }
-      )}>
-        {sessionData ? "sign out" : "sign in"}
-      </Button>
-    </div>
-  );
-};
-
-
-
-
-
-
 
 const Home: NextPage = () => {
   return (
@@ -42,9 +10,6 @@ const Home: NextPage = () => {
         <meta name="description" content="Study together in person with other McGill students" />
       </Head>
       {/* Sign-in button fixed in the top left corner */}
-      <div className="fixed top-0 left-0 z-50 m-2">
-        <Auth />
-      </div>
 
       <main className="mx-auto min-h-screen flex flex-col items-center p-4 gap-2 w-fit ">
         <h1 className="text-8xl  bg-[#6636305e] px-5 text-center mt-[calc(50vh-7.5rem)]">
@@ -67,11 +32,5 @@ const Home: NextPage = () => {
     </>
   );
 };
-
-
-
-
-
-
 
 export default Home;
