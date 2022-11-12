@@ -1,14 +1,14 @@
 import { type NextPage } from 'next';
 import Head from 'next/head';
 import { signIn, useSession } from 'next-auth/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Button from "../components/button";
 import Avatar from "boring-avatars";
+import { trpc } from '../utils/trpc';
 
 
 
-
-const EditableField = ({ value, onChange }) => {
+const EditableField = ({ value, onChange } : { value: string, onChange: (value: string) => void }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(value);
 
@@ -65,15 +65,17 @@ const Profile = ({ user } : { user: any }) => {
   ) : (
     <Avatar
       size={"6rem"}
-      name={user?.name}
+      name={user?.id}
       variant="beam"
       colors={["#F2545B", "#A93E55", "#193230", "#F3F7F0", "#779CAB"]} 
     />
   );
 
+  const changeName = trpc.auth.changeName.useMutation();
+
   const updateName = (newName: string) => {
     setName(newName);
-    alert("todo: update name in db");
+    changeName.mutate({ name: newName });
   };
 
   // display a profile section for the user, with a rounded image, name, and email
