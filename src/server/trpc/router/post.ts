@@ -4,8 +4,7 @@ import { router, protectedProcedure, publicProcedure } from "../trpc";
 
 
 export const postRouter = router({
-  post: protectedProcedure
-    .input(
+    post: protectedProcedure.input(
       z.object({
         name: z.string(),
         message: z.string(),
