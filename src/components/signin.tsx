@@ -8,6 +8,6 @@ const SignIn = () => {
     signIn( undefined, { callbackUrl: window.location.origin + "/profile" }); 
   }}>sign in</Button>);
   // should be unreachable
-  return (<Button onClick={() => {}}>error</Button>);
+  return (<Button>error</Button>);
 };
 export default SignIn;

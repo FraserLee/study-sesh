@@ -43,4 +43,34 @@ export const authRouter = router({
 
     } catch (error) { console.error(error); }
   }),
+
+  unfriend: protectedProcedure.input(
+    z.object({
+      id: z.string(),
+    }),
+  ).mutation(async ({ ctx, input }) => {
+    try {
+
+      if (!ctx.session || !ctx.session.user || !ctx.session.user.id) {
+        throw new Error("not authenticated");
+      }
+
+      if (ctx.session.user.id === input.id) {
+        throw new Error("cannot unfriend yourself");
+      }
+
+      const [low, high] = [ctx.session.user.id, input.id].sort();
+
+      await ctx.prisma.user.update({
+        where: { id: low },
+        data: { friends_high: { disconnect: { id: high } } },
+      });
+      await ctx.prisma.user.update({
+        where: { id: high },
+        data: { friends_low: { disconnect: { id: low } } },
+      });
+
+    } catch (error) { console.error(error); }
+  }),
+
 });

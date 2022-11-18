@@ -50,27 +50,53 @@ const EditableField = ({ value, onChange } : { value: string, onChange: (value: 
 };
 
 
-// (property) Session.user?: ({
-//     id: string;
-// } & {
-//     name?: string | null | undefined;
-//     email?: string | null | undefined;
-//     image?: string | null | undefined;
-// }) | undefined
+const Image = ({ img, id, size } : { img: string | null | undefined, id: string, size: number }) => {
+  if (img) return <img src={img} 
+            className="rounded-full" 
+            width={size} 
+            height={size} 
+          />;
 
-const Profile = ({ user } : { user: any }) => {
+  return <Avatar 
+            size={size} 
+            name={id} 
+            variant="beam" 
+            colors={["#F2545B", "#A93E55", "#193230", "#F3F7F0", "#779CAB"]} 
+          />;
+};
+
+
+
+type user = {
+  id: string,
+  name?: string | null,
+  email?: string | null,
+  image?: string | null,
+};
+
+
+
+const Friend = ({ friend } : { friend: user }) => {
+
+  const unfriendM = trpc.auth.unfriend.useMutation();
+  const unfriend = () => { unfriendM.mutate({ id: friend.id }); };
+
+  return (
+    <div className="flex flex-row place-content-between my-1">
+      <div className="flex flex-row items-center">
+        <Image img={friend.image} id={friend.id} size={32} />
+        <span className="ml-2 text-xs">{friend.name}</span>
+      </div>
+      <Button onClick={unfriend}>remove</Button>
+    </div>
+  );
+};
+
+
+
+const Profile = ({ user } : { user: user }) => {
   const [name, setName] = useState(user?.name || '');
   const email = user?.email || '';
-  const image = user?.image ? (
-    <img className="rounded-full w-24 h-24" src={user?.image} />
-  ) : (
-    <Avatar
-      size={"6rem"}
-      name={user?.id}
-      variant="beam"
-      colors={["#F2545B", "#A93E55", "#193230", "#F3F7F0", "#779CAB"]} 
-    />
-  );
 
   const changeName = trpc.auth.changeName.useMutation();
 
@@ -82,29 +108,26 @@ const Profile = ({ user } : { user: any }) => {
   const { data: friends, isLoading } = trpc.auth.getFriends.useQuery();
 
   const friendList = friends?.map((friend: any) => (
-    <li key={friend.id}>{friend.name}</li>
+    <Friend key={friend.id} friend={friend} />
   ));
 
-  // display a profile section for the user, with a rounded image, name, and email
-  return (
+  return (<>
     <div className="flex flex-row items-start gap-2 w-full">
-        {image}
+        <Image img={user?.image} id={user?.id} size={64} />
         <div className="flex flex-col my-2 w-full">
           <EditableField value={name} onChange={updateName} />
           <p className="text-xs">{email}</p>
         </div>
-        <div className="flex flex-col w-full">
-          <h2 className="text-lg">Friends</h2>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <ul>
-              {friendList}
-            </ul>
-          )}
-        </div>
     </div>
-  );
+    <div className="flex flex-col w-full">
+      <h2 className="text-lg">Friends</h2>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <ul> {friendList} </ul>
+      )}
+    </div>
+  </>);
 }
 
 const ProfilePage: NextPage = () => {
@@ -112,7 +135,7 @@ const ProfilePage: NextPage = () => {
   const content = (() => {
     switch (status) {
       case 'loading': return <div>Loading...</div>;
-      case 'authenticated': return <Profile user={session.user} />;
+      case 'authenticated': return <Profile user={session.user!} />;
       case 'unauthenticated':
         return (
           <div>
