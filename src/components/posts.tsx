@@ -2,6 +2,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
 import Button from "./button";
+import SignIn from "../components/signin";
 
 const PostMessageBox = () => {
   const { data: sessionData } = useSession();
@@ -15,7 +16,7 @@ const PostMessageBox = () => {
         you&#39;ve gotta sign in to post round these parts<br/>
         -🤠
       </p>
-      <Button onClick={() => signIn()}>sign in</Button>
+      <SignIn />
     </>);
   }
 

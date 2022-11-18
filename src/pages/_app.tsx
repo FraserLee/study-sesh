@@ -1,8 +1,8 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Button from "../components/button";
+import { useSession } from "next-auth/react";
+import SignIn from "../components/signin";
 
 import { trpc } from "../utils/trpc";
 
@@ -27,12 +27,7 @@ const InnerApp = ({ Component, pageProps }: any) => {
               logged in as {session?.user?.name}
             </p>
           )}
-          <Button onClick={session ? () => signOut() : () => signIn(
-            undefined,
-            { callbackUrl: window.location.origin + "/profile" }
-          )}>
-            {session ? "sign out" : "sign in"}
-          </Button>
+          <SignIn />
         </div>
       </div>
     )}

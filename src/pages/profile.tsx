@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { signIn, useSession } from 'next-auth/react';
 import { useState } from 'react';
 import Button from "../components/button";
+import SignIn from "../components/signin";
 import Avatar from "boring-avatars";
 import { trpc } from '../utils/trpc';
 
@@ -100,7 +101,7 @@ const ProfilePage: NextPage = () => {
         return (
           <div>
             sign in or create an account to view your profile. duh. <br/><br/>
-            <Button onClick={() => signIn()}>Sign in</Button>
+            <SignIn />
           </div>
         );
     }
