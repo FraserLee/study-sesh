@@ -38,18 +38,19 @@ model PostModel {
 
 model User {
   id            String    @id @default(cuid())
-  courses       Courses[]  
 
   name          String?
   email         String?   @unique
   image         String?
   bio           String?   @default("") @db.VarChar(256)
 
+  courses       Courses[]
+
+  friends_low   User[]    @relation("friends") // list of user's friends with id < current user id
+  friends_high  User[]    @relation("friends") // list of user's friends with id > current user id
 
   emailVerified DateTime?
   accounts      Account[]
-  friends_low   User[]    @relation("friends") // list of user's friends with id < current user id
-  friends_high  User[]    @relation("friends") // list of user's friends with id > current user id
   Session       Session[]
 }
 

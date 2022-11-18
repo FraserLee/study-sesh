@@ -79,6 +79,12 @@ const Profile = ({ user } : { user: any }) => {
     changeName.mutate({ name: newName });
   };
 
+  const { data: friends, isLoading } = trpc.auth.getFriends.useQuery();
+
+  const friendList = friends?.map((friend: any) => (
+    <li key={friend.id}>{friend.name}</li>
+  ));
+
   // display a profile section for the user, with a rounded image, name, and email
   return (
     <div className="flex flex-row items-start gap-2 w-full">
@@ -86,6 +92,16 @@ const Profile = ({ user } : { user: any }) => {
         <div className="flex flex-col my-2 w-full">
           <EditableField value={name} onChange={updateName} />
           <p className="text-xs">{email}</p>
+        </div>
+        <div className="flex flex-col w-full">
+          <h2 className="text-lg">Friends</h2>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            <ul>
+              {friendList}
+            </ul>
+          )}
         </div>
     </div>
   );
