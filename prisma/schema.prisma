@@ -44,7 +44,7 @@ model User {
   image         String?
   bio           String?   @default("") @db.VarChar(256)
 
-  courses       Courses[]
+  courses       Courses[] @relation("UserCourses")
 
   friends_low   User[]    @relation("friends") // list of user's friends with id < current user id
   friends_high  User[]    @relation("friends") // list of user's friends with id > current user id
@@ -61,7 +61,7 @@ model User {
 model Courses {
   course_code  String  @id @default(cuid())
   course_name String
-  student User[]    //@relation(fields: [student_id], references: [id])
+  student User[]    @relation("UserCourses")
 }
 
 
